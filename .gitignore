@@ -110,3 +110,5 @@ resize.py
 .idea/*
 .DS_Store
 darknet/
+*/data/old/*
+*/data/numpy/*
