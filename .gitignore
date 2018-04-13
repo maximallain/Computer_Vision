@@ -112,3 +112,4 @@ resize.py
 darknet/
 */data/old/*
 */data/numpy/*
+*/data/dataset-test/*

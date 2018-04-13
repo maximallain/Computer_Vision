@@ -84,22 +84,28 @@ trainY = to_categorical(trainY, num_classes=6)
 testY = to_categorical(testY, num_classes=6)
 
 # construct the image generator for data augmentation
-aug = ImageDataGenerator(rotation_range=30, width_shift_range=0.1,
-	height_shift_range=0.1, shear_range=0.2, zoom_range=0.2,
-	horizontal_flip=True, fill_mode="nearest")
+aug = ImageDataGenerator(rotation_range=30,
+                         width_shift_range=0.1,
+                         height_shift_range=0.1,
+                         shear_range=0.2,
+                         zoom_range=0.2,
+                         horizontal_flip=True,
+                         fill_mode="nearest")
 
 # initialize the model
 print("[INFO] compiling model...")
 model = LeNet.build(width=width, height=height, depth=3, classes=6)
 opt = Adam(lr=INIT_LR, decay=INIT_LR / EPOCHS)
-model.compile(loss="binary_crossentropy", optimizer=opt,
+model.compile(loss="binary_crossentropy",
+              optimizer=opt,
               metrics=["accuracy"])
 
 # train the network
 print("[INFO] training network...")
 H = model.fit_generator(aug.flow(trainX, trainY, batch_size=BS),
                         validation_data=(testX, testY), steps_per_epoch=len(trainX) // BS,
-                        epochs=EPOCHS, verbose=1)
+                        epochs=EPOCHS,
+                        verbose=1)
 
 # save the model to disk
 print("[INFO] serializing network...")
