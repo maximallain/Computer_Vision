@@ -77,11 +77,11 @@ labels = np.array(labels)
 
 # partition the data into training and testing splits using 75% of
 # the data for training and the remaining 25% for testing
-(trainX, testX, trainY, testY) = train_test_split(data, labels, test_size=0.20, random_state=42)
+trainX, trainY = data, labels
 
 # convert the labels from integers to vectors
 trainY = to_categorical(trainY, num_classes=6)
-testY = to_categorical(testY, num_classes=6)
+
 
 # construct the image generator for data augmentation
 aug = ImageDataGenerator(rotation_range=30,
@@ -103,9 +103,10 @@ model.compile(loss="categorical_crossentropy",
 # train the network
 print("[INFO] training network...")
 H = model.fit_generator(aug.flow(trainX, trainY, batch_size=BS),
-                        validation_data=(testX, testY), steps_per_epoch=len(trainX) // BS,
+                        validation_size=0.2, steps_per_epoch=len(trainX) // BS,
                         epochs=EPOCHS,
-                        verbose=1)
+                        verbose=1,
+                        shuffle=True)
 
 # save the model to disk
 print("[INFO] serializing network...")
