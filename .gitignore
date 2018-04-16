@@ -113,3 +113,4 @@ darknet/
 */data/old/*
 */data/numpy/*
 */data/dataset-test/*
+*/results/*

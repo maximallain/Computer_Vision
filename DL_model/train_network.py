@@ -31,9 +31,9 @@ args = vars(ap.parse_args())
 # and batch size
 EPOCHS = 25
 INIT_LR = 1e-3
-BS = 32
-height = 56
-width = 56
+BS = 16
+height = 28
+width = 28
 
 
 # initialize the data and labels
@@ -77,7 +77,7 @@ labels = np.array(labels)
 
 # partition the data into training and testing splits using 75% of
 # the data for training and the remaining 25% for testing
-(trainX, testX, trainY, testY) = train_test_split(data, labels, test_size=0.25, random_state=42)
+(trainX, testX, trainY, testY) = train_test_split(data, labels, test_size=0.20, random_state=42)
 
 # convert the labels from integers to vectors
 trainY = to_categorical(trainY, num_classes=6)
@@ -96,7 +96,7 @@ aug = ImageDataGenerator(rotation_range=30,
 print("[INFO] compiling model...")
 model = LeNet.build(width=width, height=height, depth=3, classes=6)
 opt = Adam(lr=INIT_LR, decay=INIT_LR / EPOCHS)
-model.compile(loss="binary_crossentropy",
+model.compile(loss="categorical_crossentropy",
               optimizer=opt,
               metrics=["accuracy"])
 
@@ -126,4 +126,4 @@ plt.ylabel("Loss/Accuracy")
 plt.legend(loc="lower left")
 plt.savefig(args["plot"])
 
-#TODO - normaliser la couleur
+
