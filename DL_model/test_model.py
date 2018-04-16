@@ -33,7 +33,7 @@ random.shuffle(imagePaths)
 for imagePath in imagePaths:
     # load the image, pre-process it, and store it in the data list
     image = cv2.imread(imagePath)
-    image = cv2.resize(image, (28, 28é))
+    image = cv2.resize(image, (28, 28))
     image = img_to_array(image)
     data.append(image)
 
@@ -85,9 +85,7 @@ for i in range(0, len(res)):
 
     if name[labels[i]] == label :
         compteur = compteur + 1
-        print('yeaaah', compteur)
     #label = "{}: {:.2f}%".format(label, proba * 100)
-    print(labels[i], ' : ', label)
 
 print("Accuracy : ", compteur/len(res))
 

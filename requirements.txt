@@ -2,3 +2,6 @@ tensorflow
 h5py
 imutils
 keras
+numpy
+cv2
+sklearn
