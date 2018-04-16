@@ -38,6 +38,7 @@ ou encore Keras, avec Tensoflow en back-end (Deep Learning).
 
 - Cloner le repository : `git clone https://github.com/maximallain/VISORD`
 - Installer les librairies : `pip install -r requirements`
+- Décompresser les deux sets de données dans le dossier _data_
 
 Pour utiliser la Vision par Ordinateur, accéder aux NoteBooks.
 
